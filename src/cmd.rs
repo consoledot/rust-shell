@@ -36,6 +36,8 @@ impl Cmd {
                 },
                 "torch"=> self.create_file(),
                 "rm"=> self.delete_file(),
+                "mkdir"=> self.create_directory(),
+                "rmdir"=> self.delete_directory(),
                 _ => println!("Unknown command")
                    
                 
@@ -121,6 +123,50 @@ impl Cmd {
             println!("File not found")
            }
             
+        }
+   
+
+    }
+    fn create_directory(&self){
+      
+        match &self.args {
+           Some(arg)=>{
+            if (arg.is_empty()){
+                println!("Enter a valid directory name");
+                return;
+            }
+            match fs::create_dir(arg[0].clone())  {
+                Ok(file) => (),
+                Err(err)=> println!("enter a valid directory name", ),
+                
+            }
+           },
+           None => {
+            println!("File not found")
+           }
+        
+        }
+   
+
+    }
+    fn delete_directory(&self){
+      
+        match &self.args {
+           Some(arg)=>{
+            if (arg.is_empty()){
+                println!("Enter a valid directory name");
+                return;
+            }
+            match fs::remove_dir(arg[0].clone())  {
+                Ok(file) => (),
+                Err(err)=> println!("enter a valid directory name", ),
+                
+            }
+           },
+           None => {
+            println!("File not found")
+           }
+        
         }
    
 
