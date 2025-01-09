@@ -19,10 +19,14 @@ fn main() {
         let mut input = String::new();
         io::stdin().read_line(&mut input).expect("Enter a command");
         let inputs: Vec<&str> = input.split_whitespace().collect();
+        if inputs.is_empty(){
+          continue;
+        }
         if inputs[0] == "exit" {
             break;
         }
         let cmd = Cmd::new(&inputs[0]).args(&inputs[1..]);
         cmd.run();
+       
     }
 }
